@@ -1,4 +1,4 @@
-name: Test
+name: Build Container
 
 on: workflow_dispatch
 jobs:
