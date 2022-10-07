@@ -1,1 +1,9 @@
+name: Test
+
 on: push
+jobs:
+  first-job:
+    runs-on: alpine-latest
+    container: python:3.10
+    steps:
+      - run: python -V
