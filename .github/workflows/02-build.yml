@@ -14,6 +14,6 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build the hello-docker Docker image
         run: |
-          docker build . --tag ghcr.io/Supracore/hello-docker-demo:latest
+          docker build . --tag ghcr.io/supracore/hello-docker-demo:latest
           docker run ghcr.io/supracore/hello-docker-demo:latest
-          docker push ghcr.io/Supracore/hello-docker-demo:latest
+          docker push ghcr.io/supracore/hello-docker-demo:latest
