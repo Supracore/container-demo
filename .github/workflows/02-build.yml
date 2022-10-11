@@ -1,4 +1,4 @@
-name: Build Container
+name: Build Hello Container
 
 on: workflow_dispatch
 jobs:
