@@ -1,0 +1,9 @@
+name: Build Container
+
+on: workflow_dispatch
+jobs:
+  first-job:
+    runs-on: ubuntu-latest
+    container: python:3.10
+    steps:
+      - run: python -V
