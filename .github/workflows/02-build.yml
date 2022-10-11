@@ -2,8 +2,18 @@ name: Build Container
 
 on: workflow_dispatch
 jobs:
-  first-job:
+  publish-hello-docker-image:
     runs-on: ubuntu-latest
-    container: python:3.10
     steps:
-      - run: python -V
+      - uses: actions/checkout@v2
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with: 
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build the hello-docker Docker image
+        run: |
+          docker build . --tag ghcr.io/Supracore/hello-docker-demo:latest
+          docker run ghcr.io/supracore/hello-docker-demo:latest
+          docker push ghcr.io/Supracore/hello-docker-demo:latest
