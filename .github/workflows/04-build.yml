@@ -1,0 +1,21 @@
+name: Build-3 Node Container Save
+
+on: workflow_dispatch
+jobs:
+  save-node-images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with: 
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Pull and save Node Containers
+        run: |
+          docker pull node:current-buster
+          docker tag node:current-buster ghcr.io/supracore/node:current-buster
+          docker push ghcr.io/supracore/node:current-buster
+          docker pull node:18.6.0-slim
+          docker tag node:18.6.0-slim ghcr.io/supracore/node:18.6.0-slim
+          docker push ghcr.io/supracore/node:18.6.0-slim
