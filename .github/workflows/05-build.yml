@@ -1,0 +1,19 @@
+name: Build-5 Container Save
+
+on: workflow_dispatch
+jobs:
+  save-node-images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with: 
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Pull and save container
+        run: |
+          docker pull bkimminich/juice-shop
+          docker tag bkimminich/juice-shop ghcr.io/supracore/juice-shop
+          docker push ghcr.io/supracore/juice-shop
+          
