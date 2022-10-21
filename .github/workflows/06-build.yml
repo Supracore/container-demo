@@ -17,5 +17,5 @@ jobs:
            # Target URL
            target: "http://localhost:3000"
            fail_action: false
-           token: $
+           token: ${{ secrets.GITHUB_TOKEN }}
            issue_title: Security Tests
