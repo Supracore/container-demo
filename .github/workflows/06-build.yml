@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+       - uses: actions/checkout@v2
        - name: Launching the app
          run: docker run --detach --rm -p 3000:3000 ghcr.io/supracore/juice-shop
          
