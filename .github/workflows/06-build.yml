@@ -1,0 +1,23 @@
+name: Security Checks
+on: workflow_dispatch
+
+jobs:
+  test:
+    name: OWASP ZAP SCANS
+    runs-on: ubuntu-latest
+
+    steps:
+       - uses: actions/checkout@v2
+         with:
+          ref: master
+       - name: Launching the app
+         run: docker run --detach --rm -p 3000:3000 ghcr.io/supracore/juice-shop
+         
+       - name: OWASP ZAP
+         uses: zaproxy/action-baseline@v0.4.0
+         with:
+           # Target URL
+           target: "http://localhost:3000"
+           fail_action: false
+           token: $
+           issue_title: Security Tests
